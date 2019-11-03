@@ -62,7 +62,6 @@ class Album: NSObject {
         artistName = dataDictionary["artistName"] as? String ?? ""
         contentAdvisoryRating = dataDictionary["contentAdvisoryRating"] as? String ?? ""
         artistURL = dataDictionary["artistUrl"] as? String ?? ""
-        url = dataDictionary["url"] as? String ?? ""
         thumbnailURL = dataDictionary["artworkUrl100"] as? String ?? ""
         url = dataDictionary["url"] as? String ?? ""
         if let genresArray = dataDictionary["genres"] as? [[String: Any]] {

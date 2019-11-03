@@ -25,13 +25,18 @@ class AlbumDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUp()
-        
-        // Do any additional setup after loading the view.
+        setUp()        
     }
     
     // MARK:- setup UI methods -
 
+    /**
+     setUp method
+     
+     - important: This method sets up the image, labels and button
+     - returns: none
+     - parameter none
+     */
     func setUp() {
         
         setUpUI()
@@ -44,11 +49,11 @@ class AlbumDetailViewController: UIViewController {
         }
         
         nameLabel.text = album?.name
-        nameLabel.font = UIFont(name: "Gill Sans", size: 20.0)
+        nameLabel.font = UIFont(name: kGillSansFont, size: 25.0)
         artistLabel.text = album?.artistName
-        artistLabel.font = UIFont(name: "Gill Sans", size: 15.0)
+        artistLabel.font = UIFont(name: kGillSansFont, size: 18.0)
         genreLabel.text = album?.genres[0].name
-        genreLabel.font = UIFont(name: "Gill Sans", size: 15.0)
+        genreLabel.font = UIFont(name: kGillSansFont, size: 18.0)
         
         if let releaseDate = album?.releaseDate {
             let dateFormatter = DateFormatter()
@@ -56,16 +61,23 @@ class AlbumDetailViewController: UIViewController {
             guard let date = dateFormatter.date(from: releaseDate) else { return }
             dateFormatter.dateFormat = "dd' 'MMM' 'yyyy"
             releaseDateLabel.text = dateFormatter.string(from: date)
-            releaseDateLabel.font = UIFont(name: "Gill Sans", size: 15.0)
+            releaseDateLabel.font = UIFont(name: kGillSansFont, size: 18.0)
         }
         copyrightLabel.text = album?.copyRight
-        copyrightLabel.font = UIFont(name: "Gill Sans", size: 15.0)
-        iTunesButton.setTitle("View in iTunes", for: .normal)
-        iTunesButton.titleLabel?.font = UIFont(name: "Gill Sans", size: 18.0)
+        copyrightLabel.font = UIFont(name: kGillSansFont, size: 15.0)
+        iTunesButton.setTitle(kITunesButtonTitle, for: .normal)
+        iTunesButton.titleLabel?.font = UIFont(name: kGillSansFont, size: 18.0)
         iTunesButton.titleLabel?.textColor = .white
         iTunesButton.addTarget(self, action: #selector(iTunesButtonTapped), for: .touchUpInside)
     }
     
+    /**
+     setUpUI method
+     
+     - important: This method sets up the frame and constraints for image, labels and button
+     - returns: none
+     - parameter none
+     */
     func setUpUI() {
         
         // ImageView constraint setup
@@ -102,17 +114,14 @@ class AlbumDetailViewController: UIViewController {
         
         // genreLabel constraint setup
         
-        genreLabel = UILabel()
         setConstraints(for: genreLabel, toLabel: artistLabel)
         
         // releaseDateLabel constraint setup
         
-        releaseDateLabel = UILabel()
         setConstraints(for: releaseDateLabel, toLabel: genreLabel)
         
         // copyrightLabel constraint setup
         
-        copyrightLabel = UILabel()
         copyrightLabel.textAlignment = .center
         copyrightLabel.numberOfLines = 0
         view.addSubview(copyrightLabel)
@@ -128,7 +137,6 @@ class AlbumDetailViewController: UIViewController {
         
         // iTunesButton constraint setup
         
-        iTunesButton = UIButton()
         iTunesButton.backgroundColor = .black
         view.addSubview(iTunesButton)
         iTunesButton.translatesAutoresizingMaskIntoConstraints = false
@@ -160,9 +168,43 @@ class AlbumDetailViewController: UIViewController {
     
     // MARK:- Button action methods -
     
+    /**
+     iTunesButtonTapped method
+     
+     - important: This method is invoked when "View in Itunes" button is tapped
+     - returns: none
+     - parameter none
+     */
     @objc func iTunesButtonTapped() {
-        if let urlString = album?.url, let url = URL(string: urlString) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        if var urlString = album?.url {
+            
+            if urlString.contains(kMusicDomain) {
+                urlString = urlString.replacingOccurrences(of: kMusicDomain, with: kITunesDomain)
+            }
+            if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                showAlert(message: kITunesUnavailabilityErrorMessage)
+            }
         }
     }
+    
+    // MARK: - Alert method -
+    
+    /**
+     showAlert method
+     
+     - important: This method shows the alert
+     - returns: none
+     - parameter message
+     */
+    func showAlert(message: String?) {
+        if let errorMessage = message {
+            let alertController = UIAlertController(title: kAlertTitle, message:
+                errorMessage+kPleaseTryAgainMessage, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: kDismiss, style: .default))
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
 }

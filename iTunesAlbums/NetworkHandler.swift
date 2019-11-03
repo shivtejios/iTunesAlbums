@@ -12,6 +12,13 @@ class NetworkHandler: NSObject {
 
     static let shared = NetworkHandler()
     
+    /**
+     makeWebServiceCall method
+     
+     - important: This method makes the webservice call with provided parameters
+     - returns: none
+     - parameter url, completion and error
+     */
     func makeWebServiceCall (url: String, completion: @escaping (_ response: [String: Any]?, _ error: Error?) -> ()) {
         let url = URL(string: url)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in

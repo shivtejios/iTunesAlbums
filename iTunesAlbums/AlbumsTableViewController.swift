@@ -34,6 +34,13 @@ class AlbumsTableViewController: UIViewController, UITableViewDataSource, UITabl
     
     // MARK:- Fetch data and setup UI methods -
     
+    /**
+     getScreenData method
+     
+     - important: This method fetches screen data from server
+     - returns: none
+     - parameter none
+     */
     @objc func getScreenData() {
         let url = String(format: kiTunesDataURL, 100)
         showIndicator()
@@ -47,6 +54,13 @@ class AlbumsTableViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    /**
+     parseData method
+     
+     - important: This method parses the fetched data from server to model object
+     - returns: none
+     - parameter responseData and error
+     */
     func parseData(responseData: [String: Any], error: Error?) {
         if let dataDictionary = responseData["feed"] as? [String: Any] {
             albumsModel =  AlbumsModel(with: dataDictionary)
@@ -56,10 +70,17 @@ class AlbumsTableViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    /**
+     updateUI method
+     
+     - important: This method updates the UI with the
+     - returns: none
+     - parameter none
+     */
     func updateUI() {
         DispatchQueue.main.async {
             self.title = self.albumsModel?.title ?? ""
-            guard let font = UIFont(name: "Gill Sans", size: 20) else { return }
+            guard let font = UIFont(name: kGillSansFont, size: 20) else { return }
             let attributes = [NSAttributedString.Key.font : font]
             self.navigationController?.navigationBar.titleTextAttributes = attributes
             self.albumsTableView.reloadData()
@@ -67,9 +88,16 @@ class AlbumsTableViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    /**
+     setUpTableView method
+     
+     - important: This method sets up the table view
+     - returns: none
+     - parameter none
+     */
     func setUpTableView() {
         self.albumsTableView.backgroundColor = .white
-        self.albumsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "AlbumTableViewCell")
+        self.albumsTableView.register(UITableViewCell.self, forCellReuseIdentifier: kAlbumTableViewCell)
         self.albumsTableView.delegate = self
         self.albumsTableView.dataSource = self
         self.view.addSubview(self.albumsTableView)
@@ -101,17 +129,17 @@ class AlbumsTableViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        var cell = tableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath)
+        var cell = tableView.dequeueReusableCell(withIdentifier: kAlbumTableViewCell, for: indexPath)
         if cell.detailTextLabel == nil {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "AlbumTableViewCell")
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: kAlbumTableViewCell)
         }
         cell.imageView?.image = nil
         if let album = albumsModel?.albums[indexPath.row] {
             
             cell.textLabel?.text = album.name
-            cell.textLabel?.font = UIFont(name: "Gill Sans", size: 18.0)
+            cell.textLabel?.font = UIFont(name: kGillSansFont, size: 18.0)
             cell.detailTextLabel?.text  = album.artistName
-            cell.detailTextLabel?.font = UIFont(name: "Gill Sans", size: 15.0)
+            cell.detailTextLabel?.font = UIFont(name: kGillSansFont, size: 15.0)
             cell.accessoryType = .disclosureIndicator
             cell.tag = indexPath.row
             if cell.imageView?.image == nil {
@@ -137,6 +165,13 @@ class AlbumsTableViewController: UIViewController, UITableViewDataSource, UITabl
     
     // MARK: - Indicator methods -
     
+    /**
+     showIndicator method
+     
+     - important: This method shows the indicator
+     - returns: none
+     - parameter none
+     */
     func showIndicator() {
         
         let activityIndicatorView = UIView.init(frame: view.bounds)
@@ -152,6 +187,13 @@ class AlbumsTableViewController: UIViewController, UITableViewDataSource, UITabl
         indicatorView = activityIndicatorView
     }
     
+    /**
+     hideIndicator method
+     
+     - important: This method hides the indicator
+     - returns: none
+     - parameter none
+     */
     func hideIndicator() {
         DispatchQueue.main.async {
             self.indicatorView?.removeFromSuperview()
@@ -159,11 +201,20 @@ class AlbumsTableViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    // MARK: - Alert method -
+    
+    /**
+     showAlert method
+     
+     - important: This method shows the alert
+     - returns: none
+     - parameter message
+     */
     func showAlert(message: String?) {
         if let errorMessage = message {
-            let alertController = UIAlertController(title: "Something wrong", message:
-                errorMessage+"\nPlease Try again", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+            let alertController = UIAlertController(title: kAlertTitle, message:
+                errorMessage+kPleaseTryAgainMessage, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: kDismiss, style: .default))
             self.present(alertController, animated: true, completion: nil)
         }
     }
