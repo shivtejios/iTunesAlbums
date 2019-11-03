@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3780E137236BDAED00B186E7 /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3780E136236BDAED00B186E7 /* NetworkHandler.swift */; };
+		37A5D2F8236B7C8600D0828B /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5D2F7236B7C8600D0828B /* AlbumDetailViewController.swift */; };
 		37BF8147236A835F0007AB08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF8146236A835F0007AB08 /* AppDelegate.swift */; };
-		37BF8149236A835F0007AB08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF8148236A835F0007AB08 /* ViewController.swift */; };
-		37BF814C236A835F0007AB08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37BF814A236A835F0007AB08 /* Main.storyboard */; };
 		37BF814E236A83640007AB08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37BF814D236A83640007AB08 /* Assets.xcassets */; };
 		37BF8151236A83640007AB08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37BF814F236A83640007AB08 /* LaunchScreen.storyboard */; };
 		37BF815C236A83640007AB08 /* iTunesAlbumsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF815B236A83640007AB08 /* iTunesAlbumsTests.swift */; };
 		37BF8167236A83640007AB08 /* iTunesAlbumsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF8166236A83640007AB08 /* iTunesAlbumsUITests.swift */; };
+		37BF8175236A854E0007AB08 /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF8174236A854E0007AB08 /* AlbumsTableViewController.swift */; };
+		37BF8177236A88250007AB08 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF8176236A88250007AB08 /* Constants.swift */; };
+		37BF817B236AA0DD0007AB08 /* AlbumsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF817A236AA0DD0007AB08 /* AlbumsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3780E136236BDAED00B186E7 /* NetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
+		37A5D2F7236B7C8600D0828B /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
 		37BF8143236A835F0007AB08 /* iTunesAlbums.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesAlbums.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37BF8146236A835F0007AB08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		37BF8148236A835F0007AB08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		37BF814B236A835F0007AB08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		37BF814D236A83640007AB08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37BF8150236A83640007AB08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37BF8152236A83640007AB08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +50,9 @@
 		37BF8162236A83640007AB08 /* iTunesAlbumsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesAlbumsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		37BF8166236A83640007AB08 /* iTunesAlbumsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesAlbumsUITests.swift; sourceTree = "<group>"; };
 		37BF8168236A83640007AB08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37BF8174236A854E0007AB08 /* AlbumsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewController.swift; sourceTree = "<group>"; };
+		37BF8176236A88250007AB08 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		37BF817A236AA0DD0007AB08 /* AlbumsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +104,11 @@
 			isa = PBXGroup;
 			children = (
 				37BF8146236A835F0007AB08 /* AppDelegate.swift */,
-				37BF8148236A835F0007AB08 /* ViewController.swift */,
-				37BF814A236A835F0007AB08 /* Main.storyboard */,
+				37BF8174236A854E0007AB08 /* AlbumsTableViewController.swift */,
+				37A5D2F7236B7C8600D0828B /* AlbumDetailViewController.swift */,
+				37BF817A236AA0DD0007AB08 /* AlbumsModel.swift */,
+				3780E136236BDAED00B186E7 /* NetworkHandler.swift */,
+				37BF8176236A88250007AB08 /* Constants.swift */,
 				37BF814D236A83640007AB08 /* Assets.xcassets */,
 				37BF814F236A83640007AB08 /* LaunchScreen.storyboard */,
 				37BF8152236A83640007AB08 /* Info.plist */,
@@ -231,7 +240,6 @@
 			files = (
 				37BF8151236A83640007AB08 /* LaunchScreen.storyboard in Resources */,
 				37BF814E236A83640007AB08 /* Assets.xcassets in Resources */,
-				37BF814C236A835F0007AB08 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,8 +264,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37BF8149236A835F0007AB08 /* ViewController.swift in Sources */,
+				37BF8175236A854E0007AB08 /* AlbumsTableViewController.swift in Sources */,
 				37BF8147236A835F0007AB08 /* AppDelegate.swift in Sources */,
+				37BF8177236A88250007AB08 /* Constants.swift in Sources */,
+				37BF817B236AA0DD0007AB08 /* AlbumsModel.swift in Sources */,
+				37A5D2F8236B7C8600D0828B /* AlbumDetailViewController.swift in Sources */,
+				3780E137236BDAED00B186E7 /* NetworkHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,14 +305,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		37BF814A236A835F0007AB08 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				37BF814B236A835F0007AB08 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		37BF814F236A83640007AB08 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
